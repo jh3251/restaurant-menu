@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7fc;
+            display: flex;
+            height: 100vh;
+        }
+        aside {
+            width: 250px;
+            background-color: #2c3e50;
+            color: white;
+            padding: 30px;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
+        }
+        aside h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .category-btn {
+            display: block;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: white;
+            text-decoration: none;
+            background-color: #34495e;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .category-btn:hover {
+            background-color: #1abc9c;
+        }
+        .menu {
+            margin-left: 270px;
+            padding: 40px 30px;
+            width: 100%;
+            overflow-y: auto;
+        }
+        .menu h2 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+        .category {
+            margin-bottom: 40px;
+        }
+        .category h3 {
+            color: #34495e;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .items-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: space-between;
+        }
+        .item {
+            width: calc(50% - 15px);
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            height: 150px;
+            position: relative;
+            text-align: center;
+        }
+        .item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        .item img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-right: 3px solid #ecf0f1;
+        }
+        .item-details {
+            padding: 5px;
+            flex-grow: 1;
+        }
+        .item-number {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: white;  /* White background */
+            color: black;  /* Black text */
+            padding: 10px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.2rem;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid red;  /* Red border */
+        }
+        .item-name {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        .item-prices {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 5px;
+            align-items: center;
+        }
+        .item-price,
+        .menu-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .item-price {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+        }
+        .menu-price {
+            background-color: #8e44ad;
+            color: white;
+            border: none;
+        }
+        .item-price:hover,
+        .menu-price:hover {
+            background-color: #c0392b;
+        }
+        .menu-price .price-label {
+            margin-right: 5px; /* Space between price and label */
+            font-size: 1rem;
+        }
+        .item-description {
+            font-size: 0.75rem;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+        @media (max-width: 768px) {
+            .item {
+                width: 100%;
+                flex-direction: column;
+                height: auto;
+            }
+            .item img {
+                width: 90px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <aside>
+        <h2>Categories</h2>
+        <a href="#category1" class="category-btn">kebab</a>
+        <a href="#category2" class="category-btn">Pollo Fritto</a>
+        <a href="#category3" class="category-btn">Fritti</a>
+        <a href="#category4" class="category-btn">Family Pack</a>
+        <a href="#category5" class="category-btn">Combo box</a>
+        <a href="#category6" class="category-btn">Combo 2 persone</a>
+        <a href="#category7" class="category-btn">Tacos</a>
+        <a href="#category8" class="category-btn">Burger</a>
+        <a href="#category9" class="category-btn">Wrap</a>
+        <a href="#category10" class="category-btn">Riso</a>
+        <a href="#category11" class="category-btn">Kids Menu</a>
+    </aside>
+
+    <div class="menu">
+        
+
+        <!-- Category 1 - 14 items -->
+        <div id="category1" class="category">
+            <h3>Kebab</h3>
+            <div class="items-row">
+                <!-- Item 1 -->
+                <div class="item">
+                    <div class="item-number">1</div>
+                    <img src="https://via.placeholder.com/60x60" alt="Item 1">
+                    <div class="item-details">
+                        <div class="item-name">Panino kebab</div>
+                        <div class="item-prices">
+                            <button class="item-price">€5.99</button>
+                        
+                            </button>
+                        </div>
+                        <div class="item-description">panino con kebab</div>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="item">
+                    <div class="item-number">2</div>
+                    <img src="https://i.ibb.co/hdgB75R/ererew.png/60x20" alt="Item 2">
+                    <div class="item-details">
+                        <div class="item-name">Panino kebab Menu </div>
+                        <div class="item-prices">
+                            <button class="item-price">€7.90</button>
+                            
+                        </div>
+                        <div class="item-description">panino kebab con patate e bibita</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-number">3</div>
+                    <img src="https://i.ibb.co/hdgB75R/ererew.png/60x20" alt="Item 2">
+                    <div class="item-details">
+                        <div class="item-name">Padina Kebab </div>
+                        <div class="item-prices">
+                            <button class="item-price">€6.00</button>
+                            
+                        </div>
+                        <div class="item-description">Padina con Kebab</div>
+                    </div>
+                </div><div class="item">
+                    <div class="item-number">4</div>
+                    <img src="https://i.ibb.co/hdgB75R/ererew.png/60x20" alt="Item 2">
+                    <div class="item-details">
+                        <div class="item-name">Padina kebab Menu </div>
+                        <div class="item-prices">
+                            <button class="item-price">€8.90</button>
+                            
+                        </div>
+                        <div class="item-description">Padina kebab con patate e bibita</div>
+                    </div>
+                </div><div class="item">
+                    <div class="item-number">2</div>
+                    <img src="https://i.ibb.co/hdgB75R/ererew.png/60x20" alt="Item 2">
+                    <div class="item-details">
+                        <div class="item-name">Panino kebab Menu </div>
+                        <div class="item-prices">
+                            <button class="item-price">$7.90</button>
+                            
+                        </div>
+                        <div class="item-description">panino kebab con patate e bibita</div>
+                    </div>
+                </div><div class="item">
+                    <div class="item-number">5</div>
+                    <img src="https://i.ibb.co/hdgB75R/ererew.png/60x20" alt="Item 2">
+                    <div class="item-details">
+                        <div class="item-name">Chesse Kebab </div>
+                        <div class="item-prices">
+                            <button class="item-price">gjgh </button>
+                            
+                        </div>
+                        <div class="item-description">panino kebab con patate e bibita</div>
+                    </div>
+                </div><div class="item">
+                    <div class="item-number">2</div>
+                    <img src="https://i.ibb.co/hdgB75R/ererew.png/60x20" alt="Item 2">
+                    <div class="item-details">
+                        <div class="item-name">Panino kebab Menu </div>
+                        <div class="item-prices">
+                            <button class="item-price">$7.90</button>
+                            
+                        </div>
+                        <div class="item-description">panino kebab con patate e bibita</div>
+                    </div>
+                </div><div class="item">
+                    <div class="item-number">2</div>
+                    <img src="https://i.ibb.co/hdgB75R/ererew.png/60x20" alt="Item 2">
+                    <div class="item-details">
+                        <div class="item-name">Panino kebab Menu </div>
+                        <div class="item-prices">
+                            <button class="item-price">$7.90</button>
+                            
+                        </div>
+                        <div class="item-description">panino kebab con patate e bibita</div>
+                    </div>
+                </div><div class="item">
+                    <div class="item-number">2</div>
+                    <img src="https://i.ibb.co/hdgB75R/ererew.png/60x20" alt="Item 2">
+                    <div class="item-details">
+                        <div class="item-name">Panino kebab Menu </div>
+                        <div class="item-prices">
+                            <button class="item-price">$7.90</button>
+                            
+                        </div>
+                        <div class="item-description">panino kebab con patate e bibita</div>
+                    </div>
+                </div><div class="item">
+                    <div class="item-number">2</div>
+                    <img src="https://i.ibb.co/hdgB75R/ererew.png/60x20" alt="Item 2">
+                    <div class="item-details">
+                        <div class="item-name">Panino kebab Menu </div>
+                        <div class="item-prices">
+                            <button class="item-price">$7.90</button>
+                            
+                        </div>
+                        <div class="item-description">panino kebab con patate e bibita</div>
+                    </div>
+                </div><div class="item">
+                    <div class="item-number">2</div>
+                    <img src="https://i.ibb.co/hdgB75R/ererew.png/60x20" alt="Item 2">
+                    <div class="item-details">
+                        <div class="item-name">Panino kebab Menu </div>
+                        <div class="item-prices">
+                            <button class="item-price">$7.90</button>
+                            
+                        </div>
+                        <div class="item-description">panino kebab con patate e bibita</div>
+                    </div>
+                </div><div class="item">
+                    <div class="item-number">2</div>
+                    <img src="https://i.ibb.co/hdgB75R/ererew.png/60x20" alt="Item 2">
+                    <div class="item-details">
+                        <div class="item-name">Panino kebab Menu </div>
+                        <div class="item-prices">
+                            <button class="item-price">$7.90</button>
+                            
+                        </div>
+                        <div class="item-description">panino kebab con patate e bibita</div>
+                    </div>
+                </div><div class="item">
+                    <div class="item-number">2</div>
+                    <img src="https://i.ibb.co/hdgB75R/ererew.png/60x20" alt="Item 2">
+                    <div class="item-details">
+                        <div class="item-name">Panino kebab Menu </div>
+                        <div class="item-prices">
+                            <button class="item-price">$7.90</button>
+                            
+                        </div>
+                        <div class="item-description">panino kebab con patate e bibita</div>
+                    </div>
+                </div><div class="item">
+                    <div class="item-number">2</div>
+                    <img src="https://i.ibb.co/hdgB75R/ererew.png/60x20" alt="Item 2">
+                    <div class="item-details">
+                        <div class="item-name">Panino kebab Menu </div>
+                        <div class="item-prices">
+                            <button class="item-price">$7.90</button>
+                            
+                        </div>
+                        <div class="item-description">panino kebab con patate e bibita</div>
+                    </div>
+                </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <!-- Continue the numbering for all items in this category and across other categories -->
+            </div>
+        </div>
+
+        <!-- Category 2 - 10 items -->
+        <div id="category2" class="category">
+            <h3>Pollo Fritto</h3>
+            <div class="items-row">
+                <!-- Item 15 -->
+                <div class="item">
+                    <div class="item-number">15</div>
+                    <img src="https://via.placeholder.com/60x60" alt="Item 15">
+                    <div class="item-details">
+                        <div class="item-name">Item 15</div>
+                        <div class="item-prices">
+                            <button class="item-price">$7.99</button>
+                            <button class="menu-price">
+                                <span class="price-label">Menu Price</span>
+                                $9.99
+                            </button>
+                        </div>
+                        <div class="item-description">Description of item 15.</div>
+                    </div>
+                </div><div class="item">
+                    <div class="item-number">2</div>
+                    <img src="https://i.ibb.co/hdgB75R/ererew.png/60x20" alt="Item 2">
+                    <div class="item-details">
+                        <div class="item-name">Panino kebab Menu </div>
+                        <div class="item-prices">
+                            <button class="item-price">$7.90</button>
+                            
+                        </div>
+                        <div class="item-description">panino kebab con patate e bibita</div>
+                    </div>
+                </div><div class="item">
+                    <div class="item-number">2</div>
+                    <img src="https://i.ibb.co/hdgB75R/ererew.png/60x20" alt="Item 2">
+                    <div class="item-details">
+                        <div class="item-name">Panino kebab Menu </div>
+                        <div class="item-prices">
+                            <button class="item-price">$7.90</button>
+                            
+                        </div>
+                        <div class="item-description">panino kebab con patate e bibita</div>
+                    </div>
+                </div><div class="item">
+                    <div class="item-number">2</div>
+                    <img src="https://i.ibb.co/hdgB75R/ererew.png/60x20" alt="Item 2">
+                    <div class="item-details">
+                        <div class="item-name">Panino kebab Menu </div>
+                        <div class="item-prices">
+                            <button class="item-price">$7.90</button>
+                            
+                        </div>
+                        <div class="item-description">panino kebab con patate e bibita</div>
+                    </div>
+                </div><div class="item">
+                    <div class="item-number">2</div>
+                    <img src="https://i.ibb.co/hdgB75R/ererew.png/60x20" alt="Item 2">
+                    <div class="item-details">
+                        <div class="item-name">Panino kebab Menu </div>
+                        <div class="item-prices">
+                            <button class="item-price">$7.90</button>
+                            
+                        </div>
+                        <div class="item-description">panino kebab con patate e bibita</div>
+                    </div>
+                </div><div class="item">
+                    <div class="item-number">2</div>
+                    <img src="https://i.ibb.co/hdgB75R/ererew.png/60x20" alt="Item 2">
+                    <div class="item-details">
+                        <div class="item-name">Panino kebab Menu </div>
+                        <div class="item-prices">
+                            <button class="item-price">$7.90</button>
+                            
+                        </div>
+                        <div class="item-description">panino kebab con patate e bibita</div>
+                    </div>
+                </div>
+                <!-- Continue numbering from 16 to 24 -->
+            </div>
+        </div>
+
+        <!-- Continue with Category 3 to Category 11 -->
+    </div>
+</body>
+</html>
