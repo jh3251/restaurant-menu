@@ -15,10 +15,16 @@
             display: flex;
             height: 100vh;
         }
+        /* Added for no-scroll when mobile menu is open */
+        body.no-scroll {
+            overflow: hidden;
+        }
+
+        /* DESKTOP ASIDE (SIDEBAR) - Always visible on desktop */
         aside {
             width: 300px;
             background-color: white;
-            color: white;
+            color: white; /* Category buttons have their own color */
             padding: 30px;
             height: 100%;
             position: fixed;
@@ -26,20 +32,21 @@
             left: 0;
             box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
-            display: flex; /* Added for mobile alignment */
-            flex-direction: column; /* Added for mobile alignment */
-            align-items: center; /* Added for mobile alignment */
+            /* Flex properties for desktop for consistent centering of logo/buttons */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         aside h2 {
             text-align: center;
             margin-bottom: 50px;
             font-size: 4rem;
             font-weight: bold;
-            color: black; /* Changed to black for visibility on white background */
-            display: none; /* Hide desktop h2 by default, will be shown on desktop if needed */
+            color: black;
+            /* On desktop, this will be visible. Hidden on mobile. */
         }
         aside img {
-            margin-bottom: 30px; /* Space below logo */
+            margin-bottom: 30px;
         }
         .category-btn {
             display: block;
@@ -57,8 +64,9 @@
         .category-btn:hover {
             background-color: red;
         }
+
         .menu {
-            margin-left: 300px;
+            margin-left: 300px; /* Offset for desktop sidebar */
             padding: 40px 30px;
             width: 100%;
             overflow-y: auto;
@@ -139,6 +147,7 @@
             gap: 10px;
             flex-wrap: wrap;
             justify-content: center;
+            margin-bottom: 15px;
         }
         .item-price,
         .menu-price {
@@ -157,6 +166,7 @@
             background-color: black;
             color: white;
         }
+
         .special-note-item {
             width: calc(100% - 40px);
             background-color: white;
@@ -180,7 +190,7 @@
 
         /* --- MODERN MOBILE MENU STYLES --- */
         .mobile-header {
-            display: none; /* Hidden by default */
+            display: none; /* Hidden by default, shown on mobile */
             width: 100%;
             background-color: white;
             padding: 15px 20px;
@@ -226,7 +236,7 @@
         }
 
         .mobile-nav-overlay {
-            display: none; /* Hidden by default */
+            display: none; /* Hidden by default, shown when toggled */
             position: fixed;
             top: 0;
             left: 0;
@@ -265,9 +275,10 @@
 
 
         /* --- Responsive Styles --- */
-        @media (min-width: 769px) { /* Desktop styles */
+        /* Desktop styles (>= 769px) */
+        @media (min-width: 769px) {
             aside {
-                display: block; /* Revert to block for desktop */
+                display: flex; /* Ensure desktop sidebar is visible */
             }
             aside h2 {
                 display: block; /* Show desktop h2 */
@@ -279,13 +290,14 @@
             .sidebar-nav { /* Ensure categories are visible on desktop */
                 display: flex;
                 flex-direction: column;
+                width: 100%;
             }
             .mobile-header, .hamburger-menu, .mobile-nav-overlay {
                 display: none !important; /* Force hide mobile elements on desktop */
             }
         }
 
-
+        /* Mobile styles (<= 768px) */
         @media (max-width: 768px) {
             body {
                 flex-direction: column;
@@ -300,7 +312,7 @@
             }
 
             .menu {
-                margin-left: 0;
+                margin-left: 0; /* No sidebar offset on mobile */
                 padding: 80px 15px 20px; /* Padding top for fixed header */
                 width: 100%;
             }
@@ -347,6 +359,7 @@
             }
         }
 
+        /* Small mobile styles (<= 480px) */
         @media (max-width: 480px) {
             .mobile-header {
                 padding: 10px 15px;
@@ -578,22 +591,35 @@
         document.addEventListener('DOMContentLoaded', function() {
             const hamburger = document.getElementById('hamburger');
             const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+            // Select all category buttons within the overlay
             const categoryButtons = mobileNavOverlay.querySelectorAll('.category-btn');
 
             hamburger.addEventListener('click', function() {
                 hamburger.classList.toggle('open');
                 mobileNavOverlay.classList.toggle('open');
-                // Prevent scrolling when menu is open
-                document.body.classList.toggle('no-scroll');
+                document.body.classList.toggle('no-scroll'); // Toggle no-scroll on body
             });
 
             // Close mobile menu when a category button is clicked
             categoryButtons.forEach(button => {
                 button.addEventListener('click', function() {
+                    // Check if the mobile menu is currently open
+                    if (mobileNavOverlay.classList.contains('open')) {
+                        hamburger.classList.remove('open');
+                        mobileNavOverlay.classList.remove('open');
+                        document.body.classList.remove('no-scroll');
+                    }
+                });
+            });
+
+            // Optional: Close menu if clicking outside of it (on the overlay itself)
+            mobileNavOverlay.addEventListener('click', function(event) {
+                // Check if the click occurred directly on the overlay, not its children
+                if (event.target === mobileNavOverlay) {
                     hamburger.classList.remove('open');
                     mobileNavOverlay.classList.remove('open');
                     document.body.classList.remove('no-scroll');
-                });
+                }
             });
         });
     </script>
