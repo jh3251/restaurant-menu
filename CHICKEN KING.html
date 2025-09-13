@@ -1,3 +1,4 @@
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,8 +16,8 @@
             height: 100vh;
         }
         aside {
-            width: 250px;
-            background-color: #2c3e50;
+            width: 300px;
+            background-color: white;
             color: white;
             padding: 30px;
             height: 100%;
@@ -24,30 +25,40 @@
             top: 0;
             left: 0;
             box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            display: flex; /* Added for mobile alignment */
+            flex-direction: column; /* Added for mobile alignment */
+            align-items: center; /* Added for mobile alignment */
         }
         aside h2 {
             text-align: center;
-            margin-bottom: 30px;
-            font-size: 1.5rem;
+            margin-bottom: 50px;
+            font-size: 4rem;
             font-weight: bold;
+            color: black; /* Changed to black for visibility on white background */
+            display: none; /* Hide desktop h2 by default, will be shown on desktop if needed */
+        }
+        aside img {
+            margin-bottom: 30px; /* Space below logo */
         }
         .category-btn {
             display: block;
-            padding: 15px;
+            padding: 20px;
             margin-bottom: 20px;
             color: white;
             text-decoration: none;
-            background-color: #34495e;
-            border-radius: 8px;
+            background-color: Black;
+            border-radius: 50px;
             text-align: center;
-            font-size: 1rem;
+            font-size: 2rem;
             transition: background-color 0.3s ease;
+            width: 100%; /* Make buttons full width in sidebar */
         }
         .category-btn:hover {
-            background-color: #1abc9c;
+            background-color: red;
         }
         .menu {
-            margin-left: 270px;
+            margin-left: 300px;
             padding: 40px 30px;
             width: 100%;
             overflow-y: auto;
@@ -64,492 +75,527 @@
         }
         .category h3 {
             color: #34495e;
-            font-size: 1.8rem;
+            font-size: 3.5rem;
             margin-bottom: 20px;
             font-weight: bold;
+            text-align: center;
         }
         .items-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
-            justify-content: space-between;
+            gap: 20px;
+            justify-content: center;
         }
         .item {
-            width: calc(50% - 15px);
+            width: 45%;
             background-color: white;
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            font-size: 0.85rem;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            height: 150px;
-            position: relative;
             text-align: center;
+            padding-bottom: 10px;
+            position: relative;
         }
         .item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
         }
         .item img {
-            width: 120px;
-            height: 120px;
+            width: 100%;
+            height: 250px;
             object-fit: cover;
-            border-right: 3px solid #ecf0f1;
+            border-bottom: 3px solid #f4f7fc;
+            margin-bottom: 15px;
         }
         .item-details {
-            padding: 5px;
+            padding: 0 15px;
             flex-grow: 1;
-        }
-        .item-number {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background-color: white;  /* White background */
-            color: black;  /* Black text */
-            padding: 10px;
-            border-radius: 50%;
-            font-weight: bold;
-            font-size: 1.2rem;
-            width: 30px;
-            height: 30px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            border: 2px solid red;  /* Red border */
         }
         .item-name {
-            font-size: 1rem;
+            font-size: 1.8rem;
             font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 5px;
+            color: red;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        .item-description {
+            font-size: 1.2rem;
+            color: black;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            flex-grow: 1;
         }
         .item-prices {
+            margin-top: auto;
             display: flex;
-            justify-content: center;
             gap: 10px;
-            margin-bottom: 5px;
-            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         .item-price,
         .menu-price {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: bold;
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .item-price {
+            padding: 12px 20px;
+            border-radius: 30px;
             background-color: #e74c3c;
             color: white;
             border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
         }
         .menu-price {
-            background-color: #8e44ad;
+            background-color: black;
             color: white;
-            border: none;
         }
-        .item-price:hover,
-        .menu-price:hover {
-            background-color: #c0392b;
+        .special-note-item {
+            width: calc(100% - 40px);
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin: 20px auto;
+            text-align: center;
+            display: block;
         }
-        .menu-price .price-label {
-            margin-right: 5px; /* Space between price and label */
-            font-size: 1rem;
+        .special-note-item .item-name {
+            font-size: 10rem;
+            color: #2c3e50;
+            margin-bottom: 50px;
         }
-        .item-description {
-            font-size: 0.75rem;
-            color: #7f8c8d;
-            margin-top: 5px;
+        .special-note-item .item-description {
+            font-size: 2rem;
+            color: #555;
+            margin-bottom: 20px;
         }
+
+        /* --- MODERN MOBILE MENU STYLES --- */
+        .mobile-header {
+            display: none; /* Hidden by default */
+            width: 100%;
+            background-color: white;
+            padding: 15px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            justify-content: space-between;
+            align-items: center;
+        }
+        .mobile-header .logo-mini {
+            height: 40px; /* Smaller logo for mobile header */
+            width: auto;
+        }
+
+        .hamburger-menu {
+            width: 30px;
+            height: 20px;
+            position: relative;
+            flex-direction: column;
+            justify-content: space-around;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .hamburger-menu span {
+            display: block;
+            width: 100%;
+            height: 3px; /* Thinner lines */
+            background-color: black;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger-menu.open span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        .hamburger-menu.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger-menu.open span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        .mobile-nav-overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Dark overlay */
+            z-index: 999; /* Below hamburger, above content */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px 20px; /* Space for header, padding for content */
+            overflow-y: auto; /* Allow scrolling if many categories */
+        }
+        .mobile-nav-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav-overlay .category-btn {
+            background-color: white; /* White buttons on dark overlay */
+            color: black;
+            font-size: 1.5rem; /* Slightly smaller for mobile menu */
+            padding: 15px;
+            margin-bottom: 15px;
+            width: 80%; /* Wider buttons in overlay */
+            max-width: 300px; /* Limit width for very large screens */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .mobile-nav-overlay .category-btn:hover {
+             background-color: #eee; /* Lighter hover */
+             color: red;
+        }
+
+
+        /* --- Responsive Styles --- */
+        @media (min-width: 769px) { /* Desktop styles */
+            aside {
+                display: block; /* Revert to block for desktop */
+            }
+            aside h2 {
+                display: block; /* Show desktop h2 */
+            }
+            aside img {
+                width: 250px;
+                height: 250px;
+            }
+            .sidebar-nav { /* Ensure categories are visible on desktop */
+                display: flex;
+                flex-direction: column;
+            }
+            .mobile-header, .hamburger-menu, .mobile-nav-overlay {
+                display: none !important; /* Force hide mobile elements on desktop */
+            }
+        }
+
+
         @media (max-width: 768px) {
-            .item {
-                width: 100%;
+            body {
                 flex-direction: column;
                 height: auto;
             }
+            aside {
+                display: none; /* Hide desktop sidebar completely on mobile */
+            }
+
+            .mobile-header {
+                display: flex; /* Show mobile header */
+            }
+
+            .menu {
+                margin-left: 0;
+                padding: 80px 15px 20px; /* Padding top for fixed header */
+                width: 100%;
+            }
+            .menu h2 {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+            .category h3 {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+            }
+            .items-row {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+            .item {
+                width: 90%;
+                max-width: 350px;
+            }
             .item img {
-                width: 90px;
-                height: 200px;
+                height: 180px;
+            }
+            .item-name {
+                font-size: 1.5rem;
+            }
+            .item-description {
+                font-size: 1.1rem;
+            }
+            .item-price,
+            .menu-price {
+                font-size: 1.2rem;
+                padding: 10px 20px;
+            }
+            .special-note-item {
+                width: 95%;
+                margin: 15px auto;
+            }
+            .special-note-item .item-name {
+                font-size: 2rem;
+            }
+            .special-note-item .item-description {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .mobile-header {
+                padding: 10px 15px;
+            }
+            .mobile-header .logo-mini {
+                height: 35px;
+            }
+            .hamburger-menu {
+                width: 25px;
+                height: 18px;
+            }
+            .hamburger-menu span {
+                height: 2px;
+            }
+            .menu {
+                padding: 70px 10px 15px;
+            }
+            .menu h2 {
+                font-size: 1.6rem;
+                margin-bottom: 20px;
+            }
+            .category h3 {
+                font-size: 1.4rem;
+            }
+            .item {
+                width: 98%;
+            }
+            .item img {
+                height: 140px;
+            }
+            .item-name {
+                font-size: 1.3rem;
+            }
+            .item-description {
+                font-size: 1rem;
+            }
+            .item-price,
+            .menu-price {
+                font-size: 1.1rem;
+                padding: 8px 15px;
+            }
+            .special-note-item {
+                width: 98%;
+                padding: 15px 10px;
+            }
+            .special-note-item .item-name {
+                font-size: 1.8rem;
+            }
+            .special-note-item .item-description {
+                font-size: 1.1rem;
             }
         }
     </style>
 </head>
 <body>
-    <aside>
-        <img src="https://i.ibb.co/CswrWN9r/loggggggggggggggg.png "width="200" height="200">
-      <br>   <br>
-      
-        <a href="#category1" class="category-btn">kebab</a>
-        <a href="#category2" class="category-btn">Pollo Fritto</a>
-        <a href="#category3" class="category-btn">Fritti</a>
-        <a href="#category4" class="category-btn">Family Pack</a>
-        <a href="#category5" class="category-btn">Combo box</a>
-        <a href="#category6" class="category-btn">Combo 2 persone</a>
-        <a href="#category7" class="category-btn">Tacos</a>
-        <a href="#category8" class="category-btn">Burger</a>
-        <a href="#category9" class="category-btn">Wrap</a>
-        <a href="#category10" class="category-btn">Riso</a>
-        <a href="#category11" class="category-btn">Kids Menu</a> 
-   
+    <!-- Mobile Header (Hidden on Desktop) -->
+    <div class="mobile-header" id="mobileHeader">
+        <img src="https://i.ibb.co/CswrWN9r/loggggggggggggggg.png" alt="Restaurant Logo" class="logo-mini">
+        <div class="hamburger-menu" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
 
+    <!-- Desktop Sidebar (Hidden on Mobile) -->
+    <aside id="desktopAside">
+        <center>
+            <img src="https://i.ibb.co/CswrWN9r/loggggggggggggggg.png" width="250" height="250" alt="Restaurant Logo">
+        </center>
+        <div class="sidebar-nav">
+            <a href="#category1" class="category-btn">Fritti</a>
+            <a href="#category2" class="category-btn">Pollo Fritto</a>
+            <a href="#category3" class="category-btn">Burger</a>
+            <a href="#category4" class="category-btn">Family Pack</a>
+            <a href="#category5" class="category-btn">Wrap</a>
+            <a href="#category6" class="category-btn">Kebab</a>
+            <a href="#category7" class="category-btn">Tacos</a>
+            <a href="#category8" class="category-btn">Low Cost</a>
+            <a href="#category9" class="category-btn">Combo Box</a>
+            <a href="#category10" class="category-btn">Combo Box 2</a>
+            <a href="#category11" class="category-btn">Riso</a>
+            <a href="#category12" class="category-btn">Kids Menu</a>
+            <a href="#category13" class="category-btn">Vegan</a>
+            <a href="#category14" class="category-btn">Ice Cream</a>
+        </div>
     </aside>
 
+    <!-- Mobile Navigation Overlay (Hidden by default) -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay">
+        <a href="#category1" class="category-btn">Fritti</a>
+        <a href="#category2" class="category-btn">Pollo Fritto</a>
+        <a href="#category3" class="category-btn">Burger</a>
+        <a href="#category4" class="category-btn">Family Pack</a>
+        <a href="#category5" class="category-btn">Wrap</a>
+        <a href="#category6" class="category-btn">Kebab</a>
+        <a href="#category7" class="category-btn">Tacos</a>
+        <a href="#category8" class="category-btn">Low Cost</a>
+        <a href="#category9" class="category-btn">Combo Box</a>
+        <a href="#category10" class="category-btn">Combo Box 2</a>
+        <a href="#category11" class="category-btn">Riso</a>
+        <a href="#category12" class="category-btn">Kids Menu</a>
+        <a href="#category13" class="category-btn">Vegan</a>
+        <a href="#category14" class="category-btn">Ice Cream</a>
+    </div>
+
     <div class="menu">
-    
-
         <div id="category1" class="category">
-            <h3>Kebab</h3><h3> This Only Price List. Self Order is Coming soon </h3>
+            <h3><u>Fritti</u></h3>
+            <p style="color:red;"> <center><p style="font-size:30px;color:red;">*This is only the price list. Self-ordering will be available soon.</p>
             <div class="items-row">
-                
+                <!-- Item 25: Mozzarella Sticks -->
                 <div class="item">
-                    <div class="item-number">1</div>
-                    <img src="https://i.ibb.co/qwW2dkw/WRWQRQ-01.jpg" alt="Panino Kebab">
+                    <div class="item-number"></div>
+                    <img src="https://rs-menus-api.roocdn.com/images/7911db43-e781-4991-9333-d3e5d1f766c9/image.jpeg" alt="Mozzarella Sticks">
                     <div class="item-details">
-                        <div class="item-name">Panino Kebab</div>
-                        <div class="item-prices">
-                            <button class="item-price">€5.00</button>
-                        </div>
-                        <div class="item-description">Classic Kebab sandwich</div>
-                    </div>
-                </div>
-                <!-- Item 2 -->
-                <div class="item">
-                    <div class="item-number">2</div>
-                    <img src="https://rs-menus-api.roocdn.com/images/2889de57-c100-439e-b576-88e6e9ab4218/image.jpeg" alt="Panino Kebab Menù">
-                    <div class="item-details">
-                        <div class="item-name">Panino Kebab Menù</div>
-                        <div class="item-prices">
-                            <button class="item-price">€7.90</button>
-                        </div>
-                        <div class="item-description">Kebab sandwich with fries and drink</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="item-number">3</div>
-                    <img src="https://rs-menus-api.roocdn.com/images/36c8d48a-580d-402c-abdc-2642fe2ebc12/image.jpeg">
-                    <div class="item-details">
-                        <div class="item-name">Piadina Kebab</div>
-                        <div class="item-prices">
-                            <button class="item-price">€6.00</button>
-                        </div>
-                        <div class="item-description">Piadina with Kebab</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="item-number">4</div>
-                    <img src="https://rs-menus-api.roocdn.com/images/36c8d48a-580d-402c-abdc-2642fe2ebc12/image.jpeg" alt="Piadina Kebab Menù">
-                    <div class="item-details">
-                        <div class="item-name">Piadina Kebab Menù</div>
-                        <div class="item-prices">
-                            <button class="item-price">€8.90</button>
-                        </div>
-                        <div class="item-description">Piadina kebab with fries and drink</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="item-number">5</div>
-                    <img src="https://i.ibb.co/q1z1P05/Cheese-Kebab.jpg" alt="Cheese Kebab">
-                    <div class="item-details">
-                        <div class="item-name">Cheese Kebab</div>
-                        <div class="item-prices">
-                            <button class="item-price">€6.90</button>
-                        </div>
-                        <div class="item-description">Kebab with cheese</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="item-number">6</div>
-                    <img src="https://i.ibb.co/YyY1yHq/Cheese-Kebab-Menu.jpg" alt="Cheese Kebab Menù">
-                    <div class="item-details">
-                        <div class="item-name">Cheese Kebab Menù</div>
-                        <div class="item-prices">
-                            <button class="item-price">€9.90</button>
-                        </div>
-                        <div class="item-description">Cheese kebab with fries and drink</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="item-number">7</div>
-                    <img src="https://i.ibb.co/z5p5Ff1/Kebab-Piatto.jpg" alt="Kebab Piatto">
-                    <div class="item-details">
-                        <div class="item-name">Kebab Piatto</div>
-                        <div class="item-prices">
-                            <button class="item-price">€8.90</button>
-                        </div>
-                        <div class="item-description">Kebab plate</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="item-number">8</div>
-                    <img src="https://i.ibb.co/SdnJd89/Doner-Box.jpg" alt="Doner Box">
-                    <div class="item-details">
-                        <div class="item-name">Doner Box</div>
-                        <div class="item-prices">
-                            <button class="item-price">€8.90</button>
-                        </div>
-                        <div class="item-description">Doner in a box</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="item-number">9</div>
-                    <img src="https://i.ibb.co/7Kghw4y/Falafel-Box.jpg" alt="Falafel Box">
-                    <div class="item-details">
-                        <div class="item-name">Falafel Box</div>
+                        <div class="item-name">Mozzarella Sticks</div>
                         <div class="item-prices">
                             <button class="item-price">€5.50</button>
-                        </div>
-                        <div class="item-description">Falafel (8 pcs) in a box</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="item-number">10</div>
-                    <img src="https://i.ibb.co/W2z8Wp1/Patate-Kebab.jpg" alt="Patate Kebab">
-                    <div class="item-details">
-                        <div class="item-name">Patate Kebab</div>
-                        <div class="item-prices">
-                            <button class="item-price">€7.90</button>
-                        </div>
-                        <div class="item-description">Fries with kebab</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="item-number">11</div>
-                    <img src="https://i.ibb.co/v4d1zL0/Panino-Falafel.jpg" alt="Panino Falafel">
-                    <div class="item-details">
-                        <div class="item-name">Panino Falafel</div>
-                        <div class="item-prices">
-                            <button class="item-price">€5.00</button>
-                        </div>
-                        <div class="item-description">Falafel sandwich</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="item-number">12</div>
-                    <img src="https://i.ibb.co/hMd90w2/Piadina-Falafel.jpg" alt="Piadina Falafel">
-                    <div class="item-details">
-                        <div class="item-name">Piadina Falafel</div>
-                        <div class="item-prices">
-                            <button class="item-price">€5.50</button>
-                        </div>
-                        <div class="item-description">Piadina with falafel</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="item-number">13</div>
-                    <img src="https://i.ibb.co/W5LhM2L/Sheek-Kebab.jpg" alt="Sheek Kebab">
-                    <div class="item-details">
-                        <div class="item-name">Sheek Kebab</div>
-                        <div class="item-prices">
-                            <button class="item-price">€4.00</button>
-                        </div>
-                        <div class="item-description">Sheek kebab (2 pcs)</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="item-number">14</div>
-                    <img src="https://i.ibb.co/X8D161p/Sheek-Kebab-Wrap.jpg" alt="Sheek Kebab Wrap">
-                    <div class="item-details">
-                        <div class="item-name">Sheek Kebab Wrap</div>
-                        <div class="item-prices">
-                            <button class="item-price">€6.00</button>
-                        </div>
-                        <div class="item-description">Sheek kebab in a wrap</div>
-                    </div>
-                </div>
-                
-                <!-- Special Note on Kebab Price -->
-                <div class="item" style="width: calc(100% - 15px); height: auto; display: block; text-align: left; padding: 20px;">
-                    <div class="item-details">
-                        <div class="item-name" style="font-size: 1.2rem; color: red;">*** Kebab</div>
-                        <div class="item-description" style="font-size: 1rem; color: #2c3e50;">PREZZO CON INSALATA</div>
-                        <div class="item-description" style="font-size: 1rem; color: #2c3e50;">SENZA INSALATA</div>
-                        <div class="item-description" style="font-size: 1rem; color: #2c3e50;">1€ PIÙ</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-     
-        <div id="category2" class="category">
-            <h3>Pollo Fritto</h3><h3> This Only Price List. Self Order is Coming soon </h3>
-            <div class="items-row">
-                <!-- Item 15 -->
-                <div class="item">
-                    <div class="item-number">15</div>
-                    <img src="https://i.ibb.co/q0Vv2sB/15-Chicken-Chips.png" alt="Chicken & Chips">
-                    <div class="item-details">
-                        <div class="item-name">Chicken & Chips</div>
-                        <div class="item-prices">
-                            <button class="item-price">€5.50</button>
-                        </div>
-                        <div class="item-description">2 pz pollo e patatine</div>
-                    </div>
-                </div>
-                <!-- Item 16 -->
-                <div class="item">
-                    <div class="item-number">16</div>
-                    <img src="https://i.ibb.co/N1g7w37/16-Wings-Chips.png" alt="Wings & Chips">
-                    <div class="item-details">
-                        <div class="item-name">Wings & Chips</div>
-                        <div class="item-prices">
-                            <button class="item-price">€5.50</button>
-                        </div>
-                        <div class="item-description">4 pz ali di pollo e patatine</div>
-                    </div>
-                </div>
-                <!-- Item 17 -->
-                <div class="item">
-                    <div class="item-number">17</div>
-                    <img src="https://i.ibb.co/VTH6s4x/17-3-X-Pollo.png" alt="3X pollo">
-                    <div class="item-details">
-                        <div class="item-name">3X pollo</div>
-                        <div class="item-prices">
-                            <button class="item-price">€5.50</button>
-                            <button class="menu-price">
-                                <span class="price-label">Menu</span>
-                                €8.40
-                            </button>
-                        </div>
-                        <div class="item-description">3 pz pollo</div>
-                    </div>
-                </div>
-                <!-- Item 18 -->
-                <div class="item">
-                    <div class="item-number">18</div>
-                    <img src="https://i.ibb.co/k57bK4q/18-Chicken-Wings.png" alt="Chicken Wings">
-                    <div class="item-details">
-                        <div class="item-name">Chicken Wings</div>
-                        <div class="item-prices">
-                            <button class="item-price">€5.50</button>
-                            <button class="menu-price">
-                                <span class="price-label">Menu</span>
-                                €8.40
-                            </button>
-                        </div>
-                        <div class="item-description">6 pz ali di pollo normale</div>
-                    </div>
-                </div>
-                <!-- Item 19 -->
-                <div class="item">
-                    <div class="item-number">19</div>
-                    <img src="https://i.ibb.co/XyD3j0D/19-Hot-Chicken-Wings.png" alt="Hot Chicken Wings">
-                    <div class="item-details">
-                        <div class="item-name">Hot Chicken Wings</div>
-                        <div class="item-prices">
-                            <button class="item-price">€5.90</button>
-                            <button class="menu-price">
-                                <span class="price-label">Menu</span>
-                                €8.90
-                            </button>
-                        </div>
-                        <div class="item-description">6 pz ali di pollo picante</div>
-                    </div>
-                </div>
-                <!-- Item 20 -->
-                <div class="item">
-                    <div class="item-number">20</div>
-                    <img src="https://i.ibb.co/Yc5VpP1/20-Sweet-Chilli-Wings.png" alt="Sweet Chilli Wings">
-                    <div class="item-details">
-                        <div class="item-name">Sweet Chilli Wings</div>
-                        <div class="item-prices">
-                            <button class="item-price">€5.90</button>
-                            <button class="menu-price">
-                                <span class="price-label">Menu</span>
-                                €8.90
-                            </button>
-                        </div>
-                        <div class="item-description">6 pz ali di pollo dolce</div>
-                    </div>
-                </div>
-                <!-- Item 21 -->
-                <div class="item">
-                    <div class="item-number">21</div>
-                    <img src="https://i.ibb.co/sK0tF7r/21-Mix-Chicken.png" alt="Mix Chicken">
-                    <div class="item-details">
-                        <div class="item-name">Mix Chicken</div>
-                        <div class="item-prices">
-                            <button class="item-price">€6.40</button>
-                            <button class="menu-price">
-                                <span class="price-label">Menu</span>
-                                €9.40
-                            </button>
-                        </div>
-                        <div class="item-description">2 pz pollo e 3 pz ali di pollo</div>
-                    </div>
-                </div>
-                <!-- Item 22 -->
-                <div class="item">
-                    <div class="item-number">22</div>
-                    <img src="https://i.ibb.co/LdQ061x/22-Chicken-Popcorn.png" alt="Chicken Popcorn">
-                    <div class="item-details">
-                        <div class="item-name">Chicken Popcorn</div>
-                        <div class="item-prices">
-                            <button class="item-price">€5.90</button>
-                        </div>
-                        <div class="item-description">12 Pezzi</div>
-                    </div>
-                </div>
-                <!-- Item 23 -->
-                <div class="item">
-                    <div class="item-number">23</div>
-                    <img src="https://i.ibb.co/Wc6q7wT/23-Chicken-Strips.png" alt="Chicken Stirps">
-                    <div class="item-details">
-                        <div class="item-name">Chicken Stirps</div>
-                        <div class="item-prices">
-                            <button class="item-price">€5.90</button>
                         </div>
                         <div class="item-description">5 Pezzi</div>
                     </div>
                 </div>
-                <!-- Item 24 -->
+                <!-- Item 26: Mix Fritti -->
                 <div class="item">
-                    <div class="item-number">24</div>
-                    <img src="https://i.ibb.co/ZJv672w/24-Chicken-Nuggets.png" alt="Chicken Nuggets">
+                    <div class="item-number"></div>
+                    <img src="https://rs-menus-api.roocdn.com/images/50bb0cf2-4763-4f74-a842-fd2aa1b46b09/image.jpeg" alt="Mix Fritti">
                     <div class="item-details">
-                        <div class="item-name">Chicken Nuggets</div>
+                        <div class="item-name">Mix Fritti</div>
+                        <div class="item-prices">
+                            <button class="item-price">€9.90</button>
+                        </div>
+                        <div class="item-description"></div>
+                    </div>
+                </div>
+                <!-- Item 27: Samosa -->
+                <div class="item">
+                    <div class="item-number"></div>
+                    <img src="https://rs-menus-api.roocdn.com/images/ad75e210-bbd6-47b2-9d11-c43c6556f4aa/image.jpeg" alt="Samosa">
+                    <div class="item-details">
+                        <div class="item-name">Samosa</div>
+                        <div class="item-prices">
+                            <button class="item-price">€4.50</button>
+                        </div>
+                        <div class="item-description">4 Pezzi</div>
+                    </div>
+                </div>
+                <!-- Item 28: Twister Fries -->
+                <div class="item">
+                    <div class="item-number"></div>
+                    <img src="https://rs-menus-api.roocdn.com/images/f8af3b51-527f-4d6e-8731-3ca688b46933/image.jpeg" alt="Twister Fries">
+                    <div class="item-details">
+                        <div class="item-name">Twister Fries</div>
+                        <div class="item-prices">
+                            <button class="item-price">S: €3.00</button>
+                            <button class="item-price">L: €4.50</button>
+                        </div>
+                        <div class="item-description"></div>
+                    </div>
+                </div>
+                <!-- Item 29: Waffle Fries -->
+                <div class="item">
+                    <div class="item-number"></div>
+                    <img src="https://rs-menus-api.roocdn.com/images/d47445b9-1ed4-48bb-a2b4-71aa6db2e8b8/image.jpeg" alt="Waffle Fries">
+                    <div class="item-details">
+                        <div class="item-name">Waffle Fries</div>
+                        <div class="item-prices">
+                            <button class="item-price">S: €3.00</button>
+                            <button class="item-price">L: €4.50</button>
+                        </div>
+                        <div class="item-description"></div>
+                    </div>
+                </div>
+                <!-- Item 30: Onion Ring -->
+                <div class="item">
+                    <div class="item-number"></div>
+                    <img src="https://rs-menus-api.roocdn.com/images/f31a1f78-d95f-4578-8fd8-c60e3596cffb/image.jpeg" alt="Onion Ring">
+                    <div class="item-details">
+                        <div class="item-name">Onion Ring</div>
                         <div class="item-prices">
                             <button class="item-price">€3.00</button>
-                            <button class="menu-price">
-                                <span class="price-label">20 pezzi</span>
-                                €10.50
-                            </button>
                         </div>
-                        <div class="item-description">5 pezzi</div>
+                        <div class="item-description">6 Pezzi</div>
+                    </div>
+                </div>
+                <!-- Item 31: Crocchetta di Patate -->
+                <div class="item">
+                    <div class="item-number"></div>
+                    <img src="https://rs-menus-api.roocdn.com/images/b6f36c51-d0a4-4fe5-8530-65f4df837e00/image.jpeg" alt="Crocchetta di Patate">
+                    <div class="item-details">
+                        <div class="item-name">Crocchetta di Patate</div>
+                        <div class="item-prices">
+                            <button class="item-price">€2.50</button>
+                        </div>
+                        <div class="item-description">6 Pezzi</div>
+                    </div>
+                </div>
+                <!-- Item 32: Fish Finger -->
+                <div class="item">
+                    <div class="item-number"></div>
+                    <img src="https://rs-menus-api.roocdn.com/images/d8746eec-53ea-4c7f-92c6-b184fb83303c/image.jpeg" alt="Fish Finger">
+                    <div class="item-details">
+                        <div class="item-name">Fish Finger</div>
+                        <div class="item-prices">
+                            <button class="item-price">€3.50</button>
+                        </div>
+                        <div class="item-description">4 Pezzi</div>
+                    </div>
+                </div>
+                <!-- Item 33: Patatine -->
+                <div class="item">
+                    <div class="item-number"></div>
+                    <img src="https://rs-menus-api.roocdn.com/images/5e29816a-7b57-4f8e-8128-e027c04e15c8/image.jpeg" alt="Patatine">
+                    <div class="item-details">
+                        <div class="item-name">Patatine</div>
+                        <div class="item-prices">
+                            <button class="item-price">S-€2.00</button>
+                            <button class="item-price">L-€3.00</button>
+                        </div>
+                        <div class="item-description"></div>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="category3" class="category">
-            <h3>Fritti</h3>
-            <h2>Coming soon</h2></div>
-                                                 <div id="category4" class="category">
-            <h3>Family Pack</h3><h3> 
-            <h2>Coming soon</h2></div>
-                                               <div id="category5" class="category">
-            <h3>Combo Box</h3>
-            <h2>Coming soon</h2></div>
-                                               <div id="category6" class="category">
-            <h3>Combo Box 2 persone</h3>
-            <h2>Coming soon</h2></div>
-                                              <div id="category7" class="category">
-            <h3>Tacos</h3>
-            <h2>Coming soon</h2></div>     
-                                                                                  <div id="category8" class="category">
-            <h3>Burger</h3>
-            <h2>Coming soon</h2></div>     <div id="category9" class="category">
-            <h3>wrap</h3>
-            <h2>Coming soon</h2></div>                                          <div id="category10" class="category">
-            <h3>Riso</h3>
-            <h2>Coming soon</h2></div>     <div id="category11" class="category">
-            <h3>Kids</h3>
-            <h2>Coming soon</h2></div>     
-                                    
-                                              
+    </div>
+
+    <!-- JavaScript for menu toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+            const categoryButtons = mobileNavOverlay.querySelectorAll('.category-btn');
+
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('open');
+                mobileNavOverlay.classList.toggle('open');
+                // Prevent scrolling when menu is open
+                document.body.classList.toggle('no-scroll');
+            });
+
+            // Close mobile menu when a category button is clicked
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    hamburger.classList.remove('open');
+                    mobileNavOverlay.classList.remove('open');
+                    document.body.classList.remove('no-scroll');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
